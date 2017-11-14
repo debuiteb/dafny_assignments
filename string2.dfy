@@ -34,12 +34,12 @@ lemma SubstringNegationLemma(sub:string, str:string)
 
 predicate haveCommonKSubstringPred(k:nat, str1:string, str2:string)
 {
-  (k <= |str1| && k <= |str2|) && (exists sub : string :: (|sub| == k) && isSubstringPred(sub,str1) && isSubstringPred(sub,str2) )
+	(k <= |str1| && k <= |str2|) && (exists sub : string :: (|sub| == k) && isSubstringPred(sub,str1) && isSubstringPred(sub,str2) )
 }
 
 predicate haveNotCommonKSubstringPred(k:nat, str1:string, str2:string)
 {
-	  (k > |str1| || k > |str2|) || (forall sub : string :: (|sub| == k) && (isNotSubstringPred(sub,str1) || isNotSubstringPred(sub,str2) ) )
+	(k > |str1| || k > |str2|) || (forall sub : string :: (|sub| == k) ==> ((isNotSubstringPred(sub,str1) || isNotSubstringPred(sub,str2) ) ) )
 }
 
 // Sanity check: Dafny should be able to automatically prove the following lemma
